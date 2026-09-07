@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LumiaStudio | Game Development Portfolio</title>
+  <meta name="description" content="Explore LumiaStudio's flagship game development portfolio featuring retro strategy, sci-fi action shooters, zombie stealth survival, and precision rage platformers.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- Animated Particle Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Radial Glow Overlays -->
+  <div class="bg-glow-top"></div>
+  <div class="bg-glow-bottom"></div>
+
+  <!-- Header Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-gamepad" style="color: #fff; font-size: 1.2rem;"></i>
+        </div>
+        <span>Lumia<span class="text-gradient-accent">Studio</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#showcase" class="active">Showcase</a></li>
+        <li><a href="#games">All Games</a></li>
+        <li><a href="#stats">Studio Stats</a></li>
+        <li><a href="#tech">Engine Specs</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="#games" class="btn btn-primary">
+          <i class="fa-solid fa-play"></i> Explore Games
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero & Showcase Carousel Section -->
+  <section class="hero" id="showcase">
+    <div class="container">
+      <div class="hero-pill">
+        <span class="badge badge-cyan">
+          <i class="fa-solid fa-sparkles"></i> Official LumiaStudio Showcase
+        </span>
+      </div>
+      <h1 class="hero-title">
+        Crafting Next-Gen <br>
+        <span class="text-gradient">Retro & Strategy Experiences</span>
+      </h1>
+      <p class="hero-subtitle">
+        Welcome to LumiaStudio! Dive into our showcase of 5 flagship web titles spanning card-merging strategy, space shooters with AI companions, zombie survival mazes, gravity platformers, and authentic WWI trench combat.
+      </p>
+    </div>
+
+    <!-- 3D Game Carousel -->
+    <div class="carousel-section">
+      <div class="container" style="position: relative;">
+        
+        <!-- Navigation Buttons -->
+        <button class="carousel-nav-btn prev-btn" id="prev-btn" aria-label="Previous Game">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="carousel-nav-btn next-btn" id="next-btn" aria-label="Next Game">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- 3D Carousel Viewport -->
+        <div class="carousel-viewport" id="carousel-viewport">
+          <div class="carousel-track" id="carousel-track">
+            <!-- Rendered dynamically by script.js -->
+          </div>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="carousel-dots" id="carousel-dots">
+          <!-- Rendered dynamically by script.js -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio Statistics Counter Section -->
+  <section class="stats-bar-section" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Released Web Games</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Troll Trap Levels</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">45</div>
+          <div class="stat-label">Zombie Stealth Mazes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Custom Web Audio Engine</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filterable Games Gallery Section -->
+  <section class="games-grid-section" id="games">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-purple" style="margin-bottom: 12px;">Full Portfolio Lineup</span>
+        <h2 class="section-title">Explore Our <span class="text-gradient">Game Collection</span></h2>
+        <p class="section-desc">Filter by genre to discover LumiaStudio's latest releases built for web browser play.</p>
+      </div>
+
+      <!-- Filter Category Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Titles (5)</button>
+        <button class="filter-tab" data-filter="strategy">Strategy</button>
+        <button class="filter-tab" data-filter="action">Action & Arcade</button>
+        <button class="filter-tab" data-filter="platformer">Platformer</button>
+        <button class="filter-tab" data-filter="survival">Survival & Stealth</button>
+      </div>
+
+      <!-- Games Grid Cards Container -->
+      <div class="games-grid" id="games-grid">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology & Engine Specs Section -->
+  <section class="features-section" id="tech">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Under The Hood</span>
+        <h2 class="section-title">LumiaStudio <span class="text-gradient">Core Features</span></h2>
+        <p class="section-desc">Pushing the boundaries of web browser gaming through performance optimization and custom audio synthesis.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <h3 class="feature-title">Procedural Web Audio Engine</h3>
+          <p class="feature-desc">Zero external audio sample latency. Custom Web Audio oscillators synth real-time laser beams, explosions, and chiptune soundscapes directly in-browser.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h3 class="feature-title">AI Tactical Companion</h3>
+          <p class="feature-desc">Integrated server-side Gemini AI providing real-time voice and tactical analysis during high-speed space combat scenarios.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h3 class="feature-title">60 FPS Canvas & Physics</h3>
+          <p class="feature-desc">Hardware-accelerated 2D canvas and custom math physics algorithms powering real-time path drawing, slingshot combat, and gravity flips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About LumiaStudio Section -->
+  <section class="about-section" id="about" style="padding: 80px 0;">
+    <div class="container">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 48px; backdrop-filter: blur(14px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px;">
+          <div style="max-width: 650px;">
+            <span class="badge badge-cyan" style="margin-bottom: 16px;">Independent Game Studio</span>
+            <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 16px;">About LumiaStudio</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 24px;">
+              LumiaStudio is an independent game development studio dedicated to building high-quality, instant-play web games with deep strategic mechanics, retro pixel aesthetics, and responsive controls.
+            </p>
+            <div style="display: flex; gap: 16px;">
+              <a href="#games" class="btn btn-primary">Browse All Games</a>
+              <a href="#showcase" class="btn btn-glass">Back To Top</a>
+            </div>
+          </div>
+          <div style="background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: var(--radius-lg); padding: 32px; text-align: center; min-width: 280px;">
+            <i class="fa-solid fa-trophy" style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 16px;"></i>
+            <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Web Gaming Pioneer</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Delivering fun & engaging gameplay directly to your browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="brand-logo" style="font-size: 1.3rem;">
+            <div class="brand-icon" style="width: 32px; height: 32px;">
+              <i class="fa-solid fa-gamepad" style="color: #fff; font-size: 1rem;"></i>
+            </div>
+            <span>Lumia<span class="text-gradient-accent">Studio</span></span>
+          </a>
+          <p>Creating immersive retro & tactical browser gaming experiences.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#showcase">Showcase</a>
+          <a href="#games">Games</a>
+          <a href="#stats">Stats</a>
+          <a href="#tech">Tech Engine</a>
+          <a href="#about">About</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 LumiaStudio. All rights reserved. Portfolio designed and created for LumiaStudio.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Game Quick-View Modal Backdrop -->
+  <div class="modal-backdrop" id="game-modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="closeGameModal()" aria-label="Close Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="modal-dynamic-content">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom JavaScript Script -->
+  <script src="./script.js"></script>
+</body>
+</html>
