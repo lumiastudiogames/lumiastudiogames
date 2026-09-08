@@ -5,6 +5,25 @@
 // Detailed Game Information Database
 const GAMES_DATABASE = [
   {
+    id: "derby-destruction",
+    title: "Demolition Derby: Crash Arena 3D",
+    genre: "Racing",
+    badgeType: "badge-gold",
+    badgeLabel: "3D Crash & Demolition Derby",
+    image: "./assets/derby_destruction.jpg",
+    folder: "./derby-destruction-3d/index.html",
+    tagline: "Smash opponent cars in high-octane 3D arenas with realistic deformation physics and garage tuning!",
+    description: "Demolition Derby: Crash Arena 3D is a full 3D vehicular combat and destruction derby game featuring high-impact collision physics, dynamic chassis deformation, 4 distinct battle arenas (including car soccer!), boss fights, and deep garage upgrades.",
+    tags: ["3D Physics Engine", "Vehicle Deformation", "Custom Garage", "Boss Battles"],
+    features: [
+      "Real-time 3D rigid body crash physics and dynamic bodywork deformation",
+      "4 action-packed battle arenas: Mud Pit Oval, Figure-8 Cross, Dark Forest & Car Soccer",
+      "Massive MegaMonster Truck arena boss encounter",
+      "Deep garage customization: V8 Engines, Armor Plating, Spiked Bumpers & Nitro Boosts",
+      "Smooth 60 FPS performance with full keyboard, mouse, and mobile touch controls"
+    ]
+  },
+  {
     id: "tribal-wars",
     title: "Remix Tribal Wars: Merge",
     genre: "Strategy",
@@ -31,15 +50,15 @@ const GAMES_DATABASE = [
     badgeLabel: "Arcade Space Shooter",
     image: "./assets/star_sector.jpg",
     folder: "./star-sector_-void-raiders/index.html",
-    tagline: "Blast through deep space with procedural upgrades, custom audio, and AI Tactical Companion!",
-    description: "Star Sector: Void Raiders is an adrenaline-fueled space shooter equipped with custom Web Audio synthesis, procedural weapon upgrades, an interactive ship hangar, and a real-time AI Tactical Companion.",
-    tags: ["Web Audio Engine", "AI Tactical Companion", "Hangar Customization", "Sci-Fi Action"],
+    tagline: "Blast through deep space with procedural upgrades, custom audio, and high-speed dogfights!",
+    description: "Star Sector: Void Raiders is an adrenaline-fueled space shooter equipped with custom Web Audio synthesis, procedural weapon upgrades, an interactive ship hangar, and high-velocity space dogfights.",
+    tags: ["Web Audio Engine", "Space Dogfights", "Hangar Customization", "Sci-Fi Action"],
     features: [
       "Custom synthesized Web Audio engine for zero-lag dynamic soundscapes",
-      "Server-side AI Tactical Companion providing battlefield intelligence",
+      "Dynamic tactical wingman radio providing real-time combat status and briefings",
       "Deep ship hangar upgrades: plasma cannons, shield boosters & drones",
       "Procedural wave generation with intense boss encounters",
-      "High-velocity bullet-hell space dogfights"
+      "High-velocity bullet-hell space combat"
     ]
   },
   {
@@ -54,7 +73,7 @@ const GAMES_DATABASE = [
     description: "Topdown Survivor combines tactical maze navigation with horror stealth. Draw your escape routes in real time, manage limited 9mm ammo, and utilize flashlight vision cones to evade lurking zombie hordes.",
     tags: ["45 Tactical Levels", "Path-Drawing Mechanics", "Flashlight Stealth", "9mm Combat"],
     features: [
-      "45 handcrafted stealth maze levels with dynamic zombie patrol AI",
+      "45 handcrafted stealth maze levels with dynamic zombie patrol routines",
       "Innovative real-time path-drawing mechanic for tactical movement",
       "Flashlight fog-of-war vision cone requiring careful stealth planning",
       "Resource scavenging: 9mm ammo, keycards, and medical kits",
@@ -87,7 +106,7 @@ const GAMES_DATABASE = [
     badgeType: "badge-pink",
     badgeLabel: "8-Bit Military Defense",
     image: "./assets/trench_war.jpg",
-    folder: "./trench-war-wwi---окопная-война/index.html",
+    folder: "./trench-war-wwi/index.html",
     tagline: "Master trench conquest, artillery strikes, and squad deployment in classic 8-bit warfare!",
     description: "Trench War WWI is an authentic retro base-defense and trench warfare strategy game. Deploy riflemen, machine gunners, and officers across battlefields, command artillery strikes, and conquer enemy trenches.",
     tags: ["WWI Trench Conquest", "Multi-Unit Waves", "Artillery Strikes", "Tech Upgrades"],
@@ -180,7 +199,7 @@ function updateCarouselState() {
   cards.forEach((card, i) => {
     card.className = "carousel-card";
 
-    // Calculate relative index wrapped around 5 cards
+    // Calculate relative index wrapped around 6 cards
     let offset = (i - currentIndex + totalGames) % totalGames;
     if (offset > totalGames / 2) offset -= totalGames;
 
@@ -190,9 +209,9 @@ function updateCarouselState() {
       card.classList.add("next");
     } else if (offset === -1) {
       card.classList.add("prev");
-    } else if (offset > 1) {
+    } else if (offset === 2) {
       card.classList.add("far-next");
-    } else if (offset < -1) {
+    } else if (offset === -2) {
       card.classList.add("far-prev");
     }
   });
@@ -237,7 +256,12 @@ function renderGamesGrid(filter = "all") {
 
   const filteredGames = filter === "all" 
     ? GAMES_DATABASE 
-    : GAMES_DATABASE.filter(game => game.genre.toLowerCase() === filter.toLowerCase());
+    : GAMES_DATABASE.filter(game => {
+        if (filter.toLowerCase() === "racing") {
+          return game.genre.toLowerCase() === "racing";
+        }
+        return game.genre.toLowerCase() === filter.toLowerCase();
+      });
 
   filteredGames.forEach(game => {
     const card = document.createElement("div");
