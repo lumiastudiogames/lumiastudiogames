@@ -368,6 +368,26 @@ function setupEventListeners() {
   viewport?.addEventListener("mouseenter", stopAutoPlay);
   viewport?.addEventListener("mouseleave", startAutoPlay);
 
+  // Mobile Touch Swipe Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  viewport?.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  viewport?.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diffX = touchEndX - touchStartX;
+    if (Math.abs(diffX) > 40) {
+      if (diffX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+      startAutoPlay();
+    }
+  }, { passive: true });
+
   // Keyboard navigation for carousel and modal
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") prevSlide();

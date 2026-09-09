@@ -1,7 +1,69 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <!-- Playgama Bridge v2 Official Integration -->
+  <!-- Playgama Bridge & Auto-Zoom Viewport Scaler Guard -->
+  <script>
+    (function() {
+      // 1. Suppress file:// origin security errors when opened directly
+      window.addEventListener('error', function(e) {
+        if (e && e.message && (e.message.indexOf('file:') !== -1 || e.message.indexOf('Unsafe attempt') !== -1 || e.message.indexOf('security origins') !== -1)) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+          return true;
+        }
+      }, true);
+
+      if (window.location.protocol === 'file:') {
+        window.bridge = window.bridge || {
+          init: function() { return Promise.resolve(); },
+          platform: { id: 'standalone' },
+          advertisement: { showInterstitial: function() { return Promise.resolve(); }, showRewarded: function() { return Promise.resolve(); } },
+          social: { share: function() { return Promise.resolve(); } },
+          leaderboard: { setScore: function() { return Promise.resolve(); } }
+        };
+      }
+
+      // 2. Responsive Auto-Scaler for Mobile (Moto G24 Landscape & Portrait)
+      function autoScale() {
+        var root = document.getElementById('root');
+        if (!root) return;
+
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+
+        document.documentElement.style.margin = '0';
+        document.documentElement.style.padding = '0';
+        document.documentElement.style.width = '100%';
+        document.documentElement.style.height = '100%';
+        document.documentElement.style.overflow = 'hidden';
+
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
+        document.body.style.width = '100%';
+        document.body.style.height = '100%';
+        document.body.style.overflow = 'hidden';
+        document.body.style.display = 'flex';
+        document.body.style.alignItems = 'center';
+        document.body.style.justifyContent = 'center';
+
+        var nativeW = 1024;
+        var nativeH = 576;
+
+        var scale = Math.min(winW / nativeW, winH / nativeH);
+        if (scale < 1) {
+          root.style.transform = 'scale(' + scale + ')';
+          root.style.transformOrigin = 'center center';
+        } else {
+          root.style.transform = 'none';
+        }
+      }
+
+      window.addEventListener('resize', autoScale);
+      window.addEventListener('orientationchange', autoScale);
+      document.addEventListener('DOMContentLoaded', autoScale);
+      setInterval(autoScale, 600);
+    })();
+  </script>
   <script src="https://playgama.com/sdk/v2/bridge.js"></script>
 
     <meta charset="UTF-8" />

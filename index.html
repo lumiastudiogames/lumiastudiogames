@@ -21,6 +21,17 @@
   <div class="bg-glow-top"></div>
   <div class="bg-glow-bottom"></div>
 
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', function() {
+        var banner = document.createElement('div');
+        banner.style.cssText = 'background: linear-gradient(90deg, #ff007a, #7000ff); color: white; text-align: center; padding: 10px 16px; font-size: 0.85rem; font-family: sans-serif; font-weight: bold; position: fixed; top: 0; left: 0; right: 0; z-index: 99999; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; gap: 12px;';
+        banner.innerHTML = '<span>⚠️ Para melhor desempenho e sem travamentos de segurança, execute o <strong>START_PORTFOLIO.bat</strong> ou navegue via <u>http://localhost:8080</u></span> <button onclick="this.parentElement.remove()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 2px 8px; border-radius: 4px; cursor: pointer;">✕</button>';
+        document.body.appendChild(banner);
+      });
+    }
+  </script>
+
   <!-- Header Navigation Bar -->
   <nav class="navbar" id="navbar">
     <div class="container nav-container">

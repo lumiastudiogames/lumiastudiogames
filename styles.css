@@ -1104,16 +1104,44 @@ h1, h2, h3, h4, .brand-logo {
   .nav-links {
     display: none;
   }
+  .carousel-section {
+    padding: 20px 0 50px 0;
+  }
   .carousel-viewport {
-    height: 480px;
+    height: 440px;
   }
   .carousel-card {
-    width: 90%;
-    height: 450px;
-    margin-left: -45%;
+    width: 92%;
+    height: 420px;
+    margin-left: -46%;
+  }
+  .card-media {
+    height: 200px;
+  }
+  .card-body {
+    padding: 16px;
+  }
+  .card-title {
+    font-size: 1.3rem;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+    margin-bottom: 12px;
   }
   .carousel-card.prev, .carousel-card.next {
     display: none;
+  }
+  .carousel-nav-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+  .carousel-nav-btn.prev-btn {
+    left: 4px;
+  }
+  .carousel-nav-btn.next-btn {
+    right: 4px;
   }
   .modal-features-list {
     grid-template-columns: 1fr;
@@ -1124,4 +1152,69 @@ h1, h2, h3, h4, .brand-logo {
   .stat-item::after {
     display: none !important;
   }
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  .carousel-viewport {
+    height: 410px;
+  }
+  .carousel-card {
+    width: 96%;
+    height: 400px;
+    margin-left: -48%;
+    border-radius: var(--radius-lg);
+  }
+  .card-media {
+    height: 180px;
+  }
+  .card-title {
+    font-size: 1.15rem;
+  }
+  .card-footer {
+    padding-top: 10px;
+  }
+  .card-tags {
+    display: none;
+  }
+}
+
+/* Mobile Landscape Optimization (e.g. Moto G24 Landscape) */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+  .hero-subtitle {
+    display: none;
+  }
+  .carousel-section {
+    padding: 10px 0 40px 0;
+  }
+  .carousel-viewport {
+    height: 340px;
+  }
+  .carousel-card {
+    width: 80%;
+    height: 330px;
+    margin-left: -40%;
+  }
+  .card-media {
+    height: 140px;
+  }
+  .card-body {
+    padding: 12px 16px;
+  }
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .card-desc {
+    display: none;
+  }
+}
+
