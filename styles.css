@@ -725,7 +725,7 @@ h1, h2, h3, h4, .brand-logo {
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 32px;
 }
 
@@ -1101,6 +1101,9 @@ h1, h2, h3, h4, .brand-logo {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
   .nav-links {
     display: none;
   }
@@ -1108,21 +1111,21 @@ h1, h2, h3, h4, .brand-logo {
     padding: 20px 0 50px 0;
   }
   .carousel-viewport {
-    height: 440px;
+    height: 430px;
   }
   .carousel-card {
-    width: 92%;
-    height: 420px;
-    margin-left: -46%;
+    width: 94%;
+    height: 410px;
+    margin-left: -47%;
   }
   .card-media {
-    height: 200px;
+    height: 190px;
   }
   .card-body {
     padding: 16px;
   }
   .card-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
   .card-desc {
     font-size: 0.85rem;
@@ -1133,15 +1136,15 @@ h1, h2, h3, h4, .brand-logo {
     display: none;
   }
   .carousel-nav-btn {
-    width: 44px;
-    height: 44px;
-    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
   }
   .carousel-nav-btn.prev-btn {
-    left: 4px;
+    left: 0px;
   }
   .carousel-nav-btn.next-btn {
-    right: 4px;
+    right: 0px;
   }
   .modal-features-list {
     grid-template-columns: 1fr;
@@ -1154,67 +1157,196 @@ h1, h2, h3, h4, .brand-logo {
   }
   .games-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
+/* Galaxy S8+ & Mobile Portrait (width <= 480px) */
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    padding: 0 4px;
+    margin-bottom: 24px;
   }
   .carousel-viewport {
-    height: 410px;
+    height: 400px;
   }
   .carousel-card {
-    width: 96%;
-    height: 400px;
-    margin-left: -48%;
+    width: 98%;
+    height: 390px;
+    margin-left: -49%;
     border-radius: var(--radius-lg);
   }
   .card-media {
-    height: 180px;
+    height: 170px;
+  }
+  .card-body {
+    padding: 14px;
   }
   .card-title {
     font-size: 1.15rem;
   }
+  .card-desc {
+    font-size: 0.82rem;
+    margin-bottom: 10px;
+  }
   .card-footer {
     padding-top: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .card-footer > div {
+    width: 100%;
+    justify-content: space-between;
   }
   .card-tags {
     display: none;
   }
+  .carousel-nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+    background: rgba(14, 18, 36, 0.95);
+  }
+  .carousel-dots {
+    margin-top: 16px;
+  }
+  .stats-bar-section {
+    padding: 20px 0;
+  }
+  .stats-grid {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+  }
+  .filter-tabs {
+    gap: 8px;
+  }
+  .filter-tab {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+  .grid-card-media {
+    height: 170px;
+  }
+  .grid-card-body {
+    padding: 16px;
+  }
+  .grid-card-title {
+    font-size: 1.1rem;
+  }
+  .grid-card-desc {
+    font-size: 0.85rem;
+  }
+  .grid-card-actions {
+    gap: 8px;
+  }
+  .grid-card-actions .btn {
+    padding: 8px 12px !important;
+    font-size: 0.75rem !important;
+    flex: 1;
+  }
+  .modal-content {
+    max-height: 95vh;
+    border-radius: var(--radius-lg);
+  }
+  .modal-header-banner {
+    height: 180px;
+  }
+  .modal-body {
+    padding: 20px 16px;
+  }
+  .modal-game-title {
+    font-size: 1.5rem;
+  }
+  .modal-actions-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal-actions-row .btn {
+    width: 100%;
+  }
 }
 
-/* Mobile Landscape Optimization (e.g. Moto G24 Landscape) */
+/* Galaxy S8+ & Mobile Landscape Optimization (height <= 520px) */
 @media (max-height: 520px) and (orientation: landscape) {
+  .navbar {
+    padding: 8px 0;
+  }
+  .navbar.scrolled {
+    padding: 6px 0;
+  }
+  .brand-logo {
+    font-size: 1.1rem;
+  }
+  .brand-icon {
+    width: 28px;
+    height: 28px;
+  }
   .hero {
-    padding-top: 80px;
-    padding-bottom: 20px;
+    padding-top: 75px;
+    padding-bottom: 10px;
+  }
+  .hero-title {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  .hero-pill {
+    margin-bottom: 8px;
   }
   .hero-subtitle {
     display: none;
   }
   .carousel-section {
-    padding: 10px 0 40px 0;
+    padding: 0 0 30px 0;
   }
   .carousel-viewport {
-    height: 340px;
+    height: 310px;
   }
   .carousel-card {
-    width: 80%;
-    height: 330px;
-    margin-left: -40%;
+    width: 75%;
+    height: 300px;
+    margin-left: -37.5%;
   }
   .card-media {
-    height: 140px;
+    height: 130px;
   }
   .card-body {
-    padding: 12px 16px;
+    padding: 10px 14px;
   }
   .card-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .card-desc {
     display: none;
   }
+  .card-footer {
+    padding-top: 6px;
+  }
+  .card-tags {
+    display: none;
+  }
+  .carousel-nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  .carousel-dots {
+    margin-top: 10px;
+  }
 }
+
 
