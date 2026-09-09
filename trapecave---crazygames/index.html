@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Standalone SDK Mock & Trapecave-style Auto-Scaler Guard -->
+    <!-- Standalone SDK Mock & Auto-Scaler Guard -->
     <script>
       (function() {
         try {
@@ -17,6 +17,22 @@
           }
         }, true);
 
+        // Web Audio Autoplay Gesture Unlock
+        function unlockAudio() {
+          var AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) {
+            if (!window.__audioUnlockCtx) {
+              window.__audioUnlockCtx = new AudioCtx();
+            }
+            if (window.__audioUnlockCtx.state === 'suspended') {
+              window.__audioUnlockCtx.resume();
+            }
+          }
+        }
+        window.addEventListener('pointerdown', unlockAudio, { once: false, passive: true });
+        window.addEventListener('keydown', unlockAudio, { once: false, passive: true });
+        window.addEventListener('touchstart', unlockAudio, { once: false, passive: true });
+
         window.CrazyGames = {
           SDK: {
             init: function() { return Promise.resolve(); },
@@ -26,18 +42,45 @@
           }
         };
 
+        const dummyPromise = function() { return Promise.resolve(); };
+
         window.bridge = window.bridge || {
-          init: function() { return Promise.resolve(); },
-          platform: { id: 'standalone', language: 'en', tld: 'com', sendMessage: function() { return Promise.resolve(); } },
+          init: dummyPromise,
+          initialize: dummyPromise,
+          on: function() {},
+          off: function() {},
+          subscribe: function() {},
+          unsubscribe: function() {},
+          platform: { id: 'standalone', language: 'en', tld: 'com', sendMessage: dummyPromise },
           advertisement: {
-            showInterstitial: function() { return Promise.resolve(); },
-            showRewarded: function() { return Promise.resolve(); },
+            showInterstitial: dummyPromise,
+            showRewarded: dummyPromise,
+            checkAdBlock: function() { return Promise.resolve(false); },
             isBannerSupported: false,
             minimumDelayBetweenInterstitial: 0
           },
-          social: { share: function() { return Promise.resolve(); }, isShareSupported: false },
-          leaderboard: { setScore: function() { return Promise.resolve(); }, isSupported: false },
-          player: { isAuthorizationSupported: false, isAuthorized: false, getData: function() { return Promise.resolve({}); }, setData: function() { return Promise.resolve(); } },
+          social: {
+            share: dummyPromise,
+            isShareSupported: false,
+            isInviteFriendsSupported: false,
+            isJoinCommunitySupported: false,
+            isCreatePostSupported: false,
+            isAddToHomeScreenSupported: false,
+            isAddToFavoritesSupported: false,
+            isRateSupported: false
+          },
+          leaderboard: {
+            setScore: dummyPromise,
+            getScore: function() { return Promise.resolve(0); },
+            getEntries: function() { return Promise.resolve([]); },
+            isSupported: false
+          },
+          player: {
+            isAuthorizationSupported: false,
+            isAuthorized: false,
+            getData: function() { return Promise.resolve({}); },
+            setData: dummyPromise
+          },
           storage: {
             isSupported: true,
             get: function(key) { return Promise.resolve(localStorage.getItem(key)); },
@@ -88,6 +131,8 @@
         setInterval(autoScale, 500);
       })();
     </script>
+
+    
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
