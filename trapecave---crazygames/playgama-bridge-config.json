@@ -1,0 +1,42 @@
+{
+  "platforms": {
+    "game_distribution": {
+      "gameId": "trapecave"
+    },
+    "crazy_games": {
+      "useUserToken": true
+    },
+    "yandex": {
+      "useSignedData": false
+    }
+  },
+  "advertisement": {
+    "minimumDelayBetweenInterstitial": 60,
+    "initialInterstitialDelay": 0,
+    "interstitial": {
+      "disable": false,
+      "preloadOnStart": "level_completed",
+      "placementFallback": "level_completed",
+      "placements": [
+        { "id": "level_completed" },
+        { "id": "menu_return" }
+      ]
+    },
+    "rewarded": {
+      "disable": false,
+      "preloadOnStart": "extra_life",
+      "placementFallback": "extra_life",
+      "placements": [
+        { "id": "extra_life" },
+        { "id": "bonus_coins" },
+        { "id": "double_reward" }
+      ]
+    }
+  },
+  "payments": [
+    { "id": "coins_pack" }
+  ],
+  "leaderboards": [
+    { "id": "main" }
+  ]
+}
