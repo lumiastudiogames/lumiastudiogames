@@ -4,7 +4,15 @@
   <!-- Playgama Bridge & Auto-Zoom Viewport Scaler Guard -->
   <script>
     (function() {
-      // 1. Suppress file:// origin security errors when opened directly
+      // 1. Override top & parent getters on file:// to prevent Chromium security origin errors
+      if (window.location.protocol === 'file:') {
+        try {
+          Object.defineProperty(window, 'top', { get: function() { return window; }, configurable: true });
+          Object.defineProperty(window, 'parent', { get: function() { return window; }, configurable: true });
+        } catch(e) {}
+      }
+
+      // Suppress file:// origin security errors when opened directly
       window.addEventListener('error', function(e) {
         if (e && e.message && (e.message.indexOf('file:') !== -1 || e.message.indexOf('Unsafe attempt') !== -1 || e.message.indexOf('security origins') !== -1)) {
           if (e.preventDefault) e.preventDefault();
