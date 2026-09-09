@@ -4,15 +4,13 @@
   <!-- Playgama Bridge & Auto-Zoom Viewport Scaler Guard -->
   <script>
     (function() {
-      // 1. Override top & parent getters on file:// to prevent Chromium security origin errors
-      if (window.location.protocol === 'file:') {
-        try {
-          Object.defineProperty(window, 'top', { get: function() { return window; }, configurable: true });
-          Object.defineProperty(window, 'parent', { get: function() { return window; }, configurable: true });
-        } catch(e) {}
-      }
+      // 1. Override top & parent getters to prevent iframe/Chromium security origin errors
+      try {
+        Object.defineProperty(window, 'top', { get: function() { return window; }, configurable: true });
+        Object.defineProperty(window, 'parent', { get: function() { return window; }, configurable: true });
+      } catch(e) {}
 
-      // Suppress file:// origin security errors when opened directly
+      // Suppress file:// origin & iframe security errors when opened directly
       window.addEventListener('error', function(e) {
         if (e && e.message && (e.message.indexOf('file:') !== -1 || e.message.indexOf('Unsafe attempt') !== -1 || e.message.indexOf('security origins') !== -1)) {
           if (e.preventDefault) e.preventDefault();
@@ -21,15 +19,27 @@
         }
       }, true);
 
-      if (window.location.protocol === 'file:') {
-        window.bridge = window.bridge || {
-          init: function() { return Promise.resolve(); },
-          platform: { id: 'standalone' },
-          advertisement: { showInterstitial: function() { return Promise.resolve(); }, showRewarded: function() { return Promise.resolve(); } },
-          social: { share: function() { return Promise.resolve(); } },
-          leaderboard: { setScore: function() { return Promise.resolve(); } }
-        };
-      }
+      // Standalone Playgama Bridge Mock (No External SDK Required)
+      window.bridge = window.bridge || {
+        init: function() { return Promise.resolve(); },
+        platform: { id: 'standalone', language: 'en', tld: 'com', sendMessage: function() { return Promise.resolve(); } },
+        advertisement: {
+          showInterstitial: function() { return Promise.resolve(); },
+          showRewarded: function() { return Promise.resolve(); },
+          isBannerSupported: false,
+          minimumDelayBetweenInterstitial: 0
+        },
+        social: { share: function() { return Promise.resolve(); }, isShareSupported: false },
+        leaderboard: { setScore: function() { return Promise.resolve(); }, isSupported: false },
+        player: { isAuthorizationSupported: false, isAuthorized: false, getData: function() { return Promise.resolve({}); }, setData: function() { return Promise.resolve(); } },
+        storage: {
+          isSupported: true,
+          get: function(key) { return Promise.resolve(localStorage.getItem(key)); },
+          set: function(key, val) { try { localStorage.setItem(key, val); } catch(e){} return Promise.resolve(); },
+          delete: function(key) { try { localStorage.removeItem(key); } catch(e){} return Promise.resolve(); }
+        },
+        game: { visibilityState: 'visible' }
+      };
 
       // 2. Responsive Auto-Scaler for Mobile (Moto G24 Landscape & Portrait)
       function autoScale() {
@@ -72,7 +82,6 @@
       setInterval(autoScale, 600);
     })();
   </script>
-  <script src="https://playgama.com/sdk/v2/bridge.js"></script>
 
     
     <meta charset="UTF-8" />

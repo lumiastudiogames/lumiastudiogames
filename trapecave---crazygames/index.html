@@ -11,23 +11,21 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="gd:tags" content="platformer,gravity,rage,pixelart,traps,puzzle,arcade">
 
-    <!-- CRAZYGAMES SDK & Safety Guard -->
+    <!-- Standalone Local SDK Mock & Safety Guard -->
     <script>
       (function() {
-        if (window.location.protocol === 'file:') {
-          try {
-            Object.defineProperty(window, 'top', { get: function() { return window; }, configurable: true });
-            Object.defineProperty(window, 'parent', { get: function() { return window; }, configurable: true });
-          } catch(e) {}
+        try {
+          Object.defineProperty(window, 'top', { get: function() { return window; }, configurable: true });
+          Object.defineProperty(window, 'parent', { get: function() { return window; }, configurable: true });
+        } catch(e) {}
 
-          window.CrazyGames = window.CrazyGames || {
-            SDK: {
-              ad: { requestAd: function(type, callbacks) { if (callbacks && callbacks.adFinished) callbacks.adFinished(); } },
-              game: { gameplayStart: function(){}, gameplayStop: function(){}, happytime: function(){} },
-              user: { getUser: function() { return Promise.resolve(null); } }
-            }
-          };
-        }
+        window.CrazyGames = {
+          SDK: {
+            ad: { requestAd: function(type, callbacks) { if (callbacks && callbacks.adFinished) callbacks.adFinished(); } },
+            game: { gameplayStart: function(){}, gameplayStop: function(){}, happytime: function(){} },
+            user: { getUser: function() { return Promise.resolve(null); } }
+          }
+        };
 
         window.addEventListener('error', function(e) {
           if (e && e.message && (e.message.indexOf('file:') !== -1 || e.message.indexOf('Unsafe attempt') !== -1 || e.message.indexOf('security origins') !== -1)) {
@@ -38,7 +36,6 @@
         }, true);
       })();
     </script>
-    <script src="https://sdk.crazygames.com/crazygames-sdk-v3.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
