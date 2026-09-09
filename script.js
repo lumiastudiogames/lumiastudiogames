@@ -182,12 +182,26 @@ function renderCarouselCards() {
       </div>
     `;
 
+    // Click side card to switch slide
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("button") || e.target.closest("a")) return;
+      if (currentIndex !== index) {
+        e.preventDefault();
+        goToSlide(index);
+        startAutoPlay();
+      }
+    });
+
     track.appendChild(card);
 
     // Indicator Dot Element
     const dot = document.createElement("div");
     dot.className = `dot ${index === 0 ? 'active' : ''}`;
-    dot.addEventListener("click", () => goToSlide(index));
+    dot.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToSlide(index);
+      startAutoPlay();
+    });
     dotsContainer.appendChild(dot);
   });
 }
@@ -197,7 +211,7 @@ function updateCarouselState() {
   const dots = document.querySelectorAll(".dot");
 
   cards.forEach((card, i) => {
-    card.className = "carousel-card";
+    card.classList.remove("active", "prev", "next", "far-prev", "far-next");
 
     // Calculate relative index wrapped around 6 cards
     let offset = (i - currentIndex + totalGames) % totalGames;
@@ -353,12 +367,16 @@ function closeGameModal() {
    ========================================================================== */
 function setupEventListeners() {
   // Carousel Buttons
-  document.getElementById("prev-btn")?.addEventListener("click", () => {
+  document.getElementById("prev-btn")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     prevSlide();
     startAutoPlay();
   });
 
-  document.getElementById("next-btn")?.addEventListener("click", () => {
+  document.getElementById("next-btn")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     nextSlide();
     startAutoPlay();
   });
