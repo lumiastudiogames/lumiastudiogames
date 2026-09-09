@@ -1,0 +1,39 @@
+{
+  "platforms": {
+    "game_distribution": {
+      "gameId": "derby_destruction_3d"
+    },
+    "crazy_games": {
+      "useUserToken": true
+    },
+    "yandex": {
+      "useSignedData": false
+    }
+  },
+  "advertisement": {
+    "minimumDelayBetweenInterstitial": 60,
+    "initialInterstitialDelay": 0,
+    "interstitial": {
+      "disable": false,
+      "preloadOnStart": "level_completed",
+      "placementFallback": "level_completed",
+      "placements": [
+        { "id": "level_completed" }
+      ]
+    },
+    "rewarded": {
+      "disable": false,
+      "preloadOnStart": "extra_life",
+      "placementFallback": "extra_life",
+      "placements": [
+        { "id": "extra_life" }
+      ]
+    }
+  },
+  "payments": [
+    { "id": "coins_pack" }
+  ],
+  "leaderboards": [
+    { "id": "main" }
+  ]
+}
